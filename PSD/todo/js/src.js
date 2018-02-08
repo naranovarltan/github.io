@@ -1,10 +1,10 @@
 $(document).ready(function() {
     $("#addTask").on("click", preAddTask);
     $("#completeTask").on("click", setDoneTask);
-    $("#counterList").on("click", "#allCounter", renderTodos);
+    $("#counterList").on("click", "#allCounter", renderAllTodos);
     $("#counterList").on("click", "#uncheckedCounter", renderActiveTodos);
     $("#counterList").on("click", "#checkedCounter", renderCompleteTodos);
-    $("#counterList").on("click", ".deleteUncheckedTodos", deleteActiveTodos);
+    $("#counterList").on("click", ".deleteCheckedTodos", deleteCompleteTodos);
     $("#taskList")
         .on("click", ".deleteTask", preDeleteTask)
         .on("click", ".doneTask", preSetPDoneTask)
@@ -23,20 +23,20 @@ $(document).ready(function() {
         }
     });
 
-    const      todos = [],
-        countersList = [{
-            id: "allCounter",
-            name: "All Tasks:",
-            type: "warning"
-        }, {
-            id: "uncheckedCounter",
-            name: "Active:",
-            type: "info"
-        }, {
-            id: "checkedCounter",
-            name: "Completed:",
-            type: "success"
-        }];
+    const todos        = [];
+    const countersList = [{
+        id: "allCounter",
+        name: "All Tasks:",
+        type: "warning"
+    }, {
+        id: "uncheckedCounter",
+        name: "Active:",
+        type: "info"
+    }, {
+        id: "checkedCounter",
+        name: "Completed:",
+        type: "success"
+    }];
 
     function filterTodos() {
         const completedTodos = [],
@@ -143,9 +143,14 @@ $(document).ready(function() {
         }
     }
 
-    function renderTodos() {
+    function renderAllTodos() {
+        renderTodos(todos);
+    }
+
+    function renderTodos(todos1) {
+        todos1 = todos1 || todos;
         $("#taskList > li").remove();
-        todos.forEach((task, index) => {
+        todos1.forEach((task, index) => {
             const li = $(`
                 <li data-index=${index}>
                     <span class="${task.done ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'} doneTask"></span>
@@ -157,64 +162,20 @@ $(document).ready(function() {
             `);
             $("#taskList").append(li);
         });
-        filterTodos();
         renderCounterList();
     }
 
     function renderActiveTodos() {
 
-        const activeTodos = [];
-
-        todos.forEach(i => {
-            if(!i.done){
-                activeTodos.push(i);
-            } else{
-                false;
-            }
-        });
-
-        $("#taskList > li").remove();
-        activeTodos.forEach((task, index) => {
-            const li = $(`
-                <li data-index=${index}>
-                    <span class="${task.done ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'} doneTask"></span>
-                    <span class="textTask ${task.done ? 'done' : ''}">${task.title}</span>
-                    <input type="text" class="editTask">
-                    <button class="btn btn-info saveTask">save</button>
-                    <span class="deleteTask glyphicon glyphicon-trash"></span>
-                </li>
-            `);
-            $("#taskList").append(li);
-        });
-        filterTodos();
+        const activeTodos = todos.filter(task => !task.done);
+        renderTodos(activeTodos);
     }
 
     function renderCompleteTodos() {
 
-        const completedTodos = [];
+        const completedTodos = todos.filter(task => task.done);
+        renderTodos(completedTodos);
 
-        todos.forEach(i => {
-            if(i.done){
-                completedTodos.push(i);
-            } else{
-                false;
-            }
-
-        $("#taskList > li").remove();
-            completedTodos.forEach((task, index) => {
-            const li = $(`
-                <li data-index=${index}>
-                    <span class="${task.done ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'} doneTask"></span>
-                    <span class="textTask ${task.done ? 'done' : ''}">${task.title}</span>
-                    <input type="text" class="editTask">
-                    <button class="btn btn-info saveTask">save</button>
-                    <span class="deleteTask glyphicon glyphicon-trash"></span>
-                </li>
-            `);
-            $("#taskList").append(li);
-        });
-
-        });
     }
 
     function renderCounterList() {
@@ -232,19 +193,20 @@ $(document).ready(function() {
         filterTodos();
     }
 
-    function deleteActiveTodos() {
-        const activeTodos = [];
+    function deleteCompleteTodos(event) {
+        event.stopPropagation();
+        const indexs = [];
 
-        todos.forEach(i => {
-            if(!i.done){
-                activeTodos.push(i);
+        todos.forEach((task, i) => {
+            if(task.done){
+                indexs.push(i);
             }
-        });
+        })
 
-        activeTodos.splice(0, activeTodos.length);
-        console.log(activeTodos, activeTodos.length);
+        indexs.reverse().forEach(index => {
+            todos.splice(index, 1)
+        })
         renderTodos();
-
     }
 
 });
