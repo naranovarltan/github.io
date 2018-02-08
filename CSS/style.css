@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+.preloader {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 2;
+    transition: 1s all;
+    opacity: 1;
+    visibility: visible;
+    background: url("../img/1352477369225.gif") center;
+}
+
+.done {
+    opacity:0;
+    overflow: hidden;
+}
+
+.loader {
+    position: absolute;
+    height: 75px;
+    width: 75px;
+    border: 10px solid white;
+    border-top-color: #000000;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: 1s spin infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to  {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.logo {
+    background: #000;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.graficlogo {
+    padding: 5px;
+    max-width: 100%;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-size: 56px;
+}
+
+.slideshow-container {
+    max-width: 1062px;
+    position: relative;
+    margin: auto;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: #FFFFFF;
+    font-weight:bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.6);
+}
+
+.pag {
+    text-align: center;
+}
+
+.numbertext {
+    text-align: center;
+}
+
+.text {
+    color: #FFFFFF;
+    font-size: 22px;
+    padding: 8px 12px;
+    position: relative;
+    bottom: 50px;
+    text-align: center;
+}
+
+.dot {
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    align-items:;
+}
+
+.active, dot:hover {
+    background-color: #717171;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from{opacity:0.4}
+    to{opacity: 1}
+}
+
+
+
+nav {
+    margin: auto;
+    text-align: center;
+}
+
+.topnav {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    font-size: 14px;
+    margin: 20px 0 20px 0;
+}
+
+.topnav a {
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: 1s all;
+}
+
+.topnav a:hover {
+    font-weight: bold;
+    transition: 0.5s all;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+.icon {
+    background-color: lightgrey;
+    margin-top: -2px;
+}
+
+.main-img {
+    max-width: 100%;
+    width: 100%;
+}
+
+.main__container {
+    display: flex;
+    justify-content: center;
+}
+
+.fab {
+    font-size: 140px;
+}
+
+.main__menu {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.main__item {
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+.main__img {
+    height: 120px;
+}
+
+.main__link:visited{
+    color: #000000;
+}
+
+.footer {
+    width: 100%;
+    height:auto;
+    margin: 0 auto;
+    text-align: center;
+    background-color: black;
+    padding-top: 25px;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer__link {
+    color: #ffffff;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.footer__link:hover {
+    border-bottom: 1px solid #FFFFFF;
+
+}
+
+.author {
+    color: #FFFFFF;
+}
+
+/*Страница Project*/
+
+main {
+    min-height: 100%;
+}
+
+main::after {
+    content: "";
+    height: 77px;
+    display: block;
+}
+
+.project-container {
+    margin-bottom: 20px;
+    background-color: gainsboro;
+}
+
+.project-albul {
+    border-radius: 10px;
+    margin: auto;
+    width: 70%;
+    padding: 10px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.project__item {
+    background-image: url('../img/project.jpg');
+    width: 230px;
+    height: 145px;
+    border-radius: 4px; 
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 35%;
+    background-color: #ecf1f5;
+    margin: 5px 5px;
+    transition: .3s;
+}
+
+.project__item:hover {
+    filter: grayscale(50%);
+}
+
+.project__item-title {
+    color: rgb(26, 23, 23);
+    opacity: 0.6;
+    font-style: italic;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 118px 12px 9px;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+.project__item-title:hover {
+    text-decoration: underline;
+    color: rgb(0, 0, 0);
+}
+
+@media screen and (max-width: 768px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav {
+        flex-flow: column nowrap;
+    }
+
+    .topnav a.icon {
+        display: block;
+    }
+    nav {
+        width: 100%;
+    }
+    .topnav.responsive {
+        position: relative;
+    }
+    .topnav.responsive a.icon {
+        transition: 0s;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .topnav a.icon {
+        transition: 0s;
+        position: absolute;
+        right: 0;
+        top: 96px;
+    }
+
+    .topnav.responsive a {
+        display: block;
+        text-align: center;
+    }
+    .main__item {
+        width: 45%;
+    }
+
+    .fab {
+        font-size: 100px;
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .main__menu{
+        flex-direction: column;
+    }
+    .main__item {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+    .fab {
+        font-size: 70px;
+    }
+    .main__item p {
+        display: none;
+    }
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.0);
+    }
+
+}
+

@@ -1,0 +1,44 @@
+/*Страница Велком*/
+
+.welcome {
+    width: 172px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.welcome__pic {
+    width: 160px;
+}
+
+.welcome__btn {
+    padding: 15px 20px;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    background: #131415;
+    border-radius: 3px;
+}
+
+.welcome__btn:hover {
+    opacity: 0.5;
+}
+
+.wrapper_welcome {
+    background: url('../../img/welcome/welcome.jpg') center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    min-width: initial;
+}
+
+.wrapper_welcome::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+}

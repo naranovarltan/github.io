@@ -1,0 +1,132 @@
+.main-content {
+    float: left;
+    width: 880px;
+}
+
+.main-content_padding_top {
+    padding-top: 
+}
+
+.page-image {
+    position: relative;
+}
+
+.page-image__picture {
+    max-width: 100%;
+}
+
+.page-image__company {
+    position: absolute;
+    top: 143px;
+    left: 64px;
+    font-size: 49px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/*Блок с описанием и партнёрами*/
+
+.about-content {
+    padding-right: 21.14%;
+    padding-top: 2px;
+    line-height: 30px;
+    font-size: 18px;
+}
+
+.about-content__bold {
+    font-weight: bold;
+}
+
+/*Текст*/
+
+.page-content {
+    font-size: 18px;
+    line-height: 30px;
+    color: #221f1f;
+}
+
+.page-text {
+    margin-top: -3px;
+}
+
+.page-text ul {
+    margin-top: 6px;
+    margin-left: 3px;
+}
+
+.page-text li {
+    padding-left: 40px;
+    background: url('../../img/about/slice.png') 0 0 no-repeat;
+    background-position: 5px;
+    margin-bottom: 5px;
+}
+
+.description {
+    background: #131415;
+    color: #ffffff;
+    padding: 13px 31px 12px 31px;
+    margin-top: 21px;
+
+}
+
+/*Партнёры*/
+
+.partners__list {
+    margin-bottom: 25px;
+}
+
+.partners-title {
+    color: #221f1f;
+    font-size: 49px;
+    text-transform: uppercase;
+    margin-top: 74px;
+}
+
+.partners__item {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 40px;
+    margin-top: 7px;
+    width: 220px;
+    height: 70px;
+}
+
+.parners__link {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+}
+
+.parners__link:hover {
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+}
+
+.partners__image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+.parners__link-middle {
+    left: 50%;
+    transform: translate(17%, 2%);
+    -webkit-transform: translate(17%, 2%);
+}
+
+.parners__link-right {
+    right: 0;
+    transform: translate(8%, 8%);
+    -webkit-transform: translate(35%, 2%);
+}

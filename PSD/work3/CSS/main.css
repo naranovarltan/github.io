@@ -1,0 +1,148 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    min-width: 1300px;
+}
+
+.container {
+    width: 1160px;
+    margin: 0 auto;
+}
+
+/*header*/
+
+.header {
+    background: #76c7c0;
+    height: 80px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.header-logo, .header-menu, .hearder-search {
+    float: left;
+}
+
+.header-logo {
+    width: 28%;
+}
+
+.header-logo-left {
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.header-logo-right {
+    font-size: 26px;
+}
+
+.header-menu {
+    width: 68%;
+}
+
+.header-menu__list {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 14px;
+}
+
+.header-menu__item {
+    text-transform: uppercase;
+    justify-content: space-around;
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    height: 16px;
+    vertical-align: middle;
+    padding: 10px 0;
+}
+
+.header-menu__item:hover {
+    background: #62a29e;
+}
+
+.hearder-search {
+    width: 4%;
+    height: 20px;
+}
+
+/*Секция About*/
+
+.about {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about h2 {
+    color: #7f8c8c;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 29px 0;
+}
+
+.breadcrums__list {
+    display: flex;
+    padding: 28px 0;
+}
+
+.breadcrums__item::after {
+    content: " / ";
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*Секция Main*/
+
+.main-description h2 {
+    color: #e2615b;
+    font-size: 30px;
+}
+
+
+
+
+.section-gray {
+    background: #ececec;
+}
+
+section h2 {
+    margin: 0;
+}
+
+.team-pic {
+    display: flex;
+    justify-content: space-around;
+}
+
+.team-desc {
+    height: 315px;
+    width: 220px;
+    background: #f8f8f8;
+}
+
+.team-desc__item {
+    height: 100%;
+    width: 100%;
+}

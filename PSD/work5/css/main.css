@@ -1,0 +1,7 @@
+@import "layout/normalize.css";
+@import "layout/base.css";
+@import "layout/base.css";
+
+@import "pages/about.css";
+@import "pages/comments.css";
+@import "pages/welcome.css";

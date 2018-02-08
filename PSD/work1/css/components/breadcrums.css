@@ -1,0 +1,36 @@
+/*Хлебные крошки*/
+
+.breadcrums {
+    vertical-align: middle;
+    padding-top: 39px;
+}
+
+.section-title {
+     font-size: 43px;
+     margin-top: 9px 0 40px 0;
+}
+
+.breadcrums__item {
+    display: inline-block;
+}
+
+.breadcrums__item::after {
+    content: "/";
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.breadcrums__link {
+    font-size: 14px;
+    color: #f89513;
+    font-style: italic;
+}
+
+.breadcrums__item_active .breadcrums__link {
+    text-decoration: none;
+    color: #221f1f;
+}
+
+.breadcrums__item_active::after {
+    display: none;
+}

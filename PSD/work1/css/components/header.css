@@ -1,0 +1,104 @@
+.header {
+    background: #131415;
+    height: 76px;
+    padding: 10px 0;
+}
+
+.header-left, .header-right {
+    float: left;
+    width: 50%;
+}
+
+.header__logo {
+    margin-top: 13px;
+}
+
+.header-right {
+    float: left;
+    text-align: right;
+    width: 50%;
+}
+
+.header-left {
+    float: left;
+    width: 50%;
+}
+
+.header-left__link {
+    text-decoration: none;
+}
+
+.contacts {
+    display: inline-block;
+    margin-top: 3px;
+}
+
+.contacts__phone {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 21px;
+    text-decoration: none;
+}
+
+.contacts__schedule {
+    font-size: 14px;
+    opacity: .7;
+    font-weight: bold;
+    color: #f89513;
+}
+
+/*всплывашка*/
+
+.contacts__elem {
+    position: relative;
+    padding-right: 2px;
+    line-height: 1;
+}
+
+.contacts__elem:hover .contacts__dropdown {
+    display: block;
+}
+
+.contacts__dropdown {
+    background-color: #fff;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 1000;
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 14px;
+    border-radius: 3px 0 3px 3px;
+    box-shadow: 3px 0px 5.5px #173b75;
+    display: none;
+}
+
+.contacts__dropdown::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 30px;
+    left: 0;
+    right: 0;
+    top: -30px;
+}
+
+.contacts__dropdown::before {
+    content: "";
+    display: block;
+    border: 11px solid transparent;
+    border-top-width: 0;
+    border-bottom-color: #fff;
+    position: absolute;
+    top: -11px;
+    right: 0;
+}
+
+.contacts__time {
+    color: #f89513;
+    font-weight: bold;
+}
+
+.contacts__lunch {
+    color: #221f1f;
+}

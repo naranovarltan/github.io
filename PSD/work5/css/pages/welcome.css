@@ -1,0 +1,100 @@
+/*Страница Велком*/
+
+.welcome {
+    width: 172px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.wrapper_welcome {
+    background: url('../../img/welcome/welcome-tgn.jpg') center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    min-width: initial;
+}
+
+.wrapper_welcome::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+}
+
+.welcome__forms {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 0.3125rem;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.forms__photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 15px auto;
+}
+
+.social {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 25px 10px;
+}
+
+.social__item {
+    display: inline-block;
+}
+
+.social__link {
+    display: block;
+    width: 50px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.social__link-vk {
+    background: url('../../img/welcome/vk.png') 15px 0 no-repeat;
+}
+
+.social__link-fb {
+    background: url('../../img/welcome/fb.png') 15px 0 no-repeat;
+}
+
+.social__link-mail {
+    background: url('../../img/welcome/mail.png') 15px 0 no-repeat;
+}
+
+.nav-menu {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.nav-menu__item {
+    flex: 1;
+    background-color: #07ac98;
+    text-align: center;
+    border-right: 0.125rem solid #73c8c0;
+}
+
+.nav-menu__item:last-child {
+    border-right: 0px;
+}
+
+.nav-menu__link {
+    text-decoration: none;
+    padding: 15px 0;
+    color: #fff;
+    display: block;
+}
