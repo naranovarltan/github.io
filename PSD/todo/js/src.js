@@ -1,27 +1,6 @@
 $(document).ready(function() {
-    $("#addTask").on("click", preAddTask);
-    $("#completeTask").on("click", setDoneTask);
-    $("#counterList").on("click", "#allCounter", renderAllTodos);
-    $("#counterList").on("click", "#uncheckedCounter", renderActiveTodos);
-    $("#counterList").on("click", "#checkedCounter", renderCompleteTodos);
-    $("#counterList").on("click", ".deleteCheckedTodos", deleteCompleteTodos);
-    $("#taskList")
-        .on("click", ".deleteTask", preDeleteTask)
-        .on("click", ".doneTask", preSetPDoneTask)
-        .on("dblclick", editTask)
-        .on("click", ".saveTask", saveTask)
-        .on("keypress", ".editTask", function (event) {
-            if (event.keyCode === 13) {
-                saveKeyTask(event);
-                event.preventDefault();
-            }
-        });
-    $("#newTask").on("keypress", function (event) {
-        if (event.keyCode === 13) {
-            preAddTask();
-            event.preventDefault();
-        }
-    });
+
+    events();
 
     const todos        = [{
         done: false,
@@ -42,6 +21,7 @@ $(document).ready(function() {
         done: false,
         title: "Pagination"
     }];
+
     const countersList = [{
         id: "allCounter",
         name: "All Tasks:",
@@ -57,6 +37,32 @@ $(document).ready(function() {
     }];
 
     renderTodos();
+
+    function events () {
+        $("#addTask").on("click", preAddTask);
+        $("#completeTask").on("click", setDoneTask);
+        $("#counterList").on("click", "#allCounter", renderAllTodos);
+        $("#counterList").on("click", "#uncheckedCounter", renderActiveTodos);
+        $("#counterList").on("click", "#checkedCounter", renderCompleteTodos);
+        $("#counterList").on("click", ".deleteCheckedTodos", deleteCompleteTodos);
+        $("#taskList")
+            .on("click", ".deleteTask", preDeleteTask)
+            .on("click", ".doneTask", preSetPDoneTask)
+            .on("dblclick", editTask)
+            .on("click", ".saveTask", saveTask)
+            .on("keypress", ".editTask", function (event) {
+                if (event.keyCode === 13) {
+                    saveKeyTask(event);
+                    event.preventDefault();
+                }
+            });
+        $("#newTask").on("keypress", function (event) {
+            if (event.keyCode === 13) {
+                preAddTask();
+                event.preventDefault();
+            }
+        });
+    }
 
     function filterTodos() {
         const completedTodos = [],
@@ -160,9 +166,11 @@ $(document).ready(function() {
     function focusAllCounter() {
         $("#counterList #allCounter").addClass("focusCounter");
     }
+    
     function focusActiveCounter() {
         $("#counterList #uncheckedCounter").addClass("focusCounter");
     }
+
     function focusCompletedCounter() {
         $("#counterList #checkedCounter").addClass("focusCounter");
     }
@@ -171,7 +179,7 @@ $(document).ready(function() {
         renderTodos(todos);
     }
 
-    function renderTodos(todosRender) {
+    function renderTodos(todosRender, type) {
         todosRender = todosRender || todos;
 
         $("#taskList > li").remove();
@@ -188,29 +196,25 @@ $(document).ready(function() {
             $("#taskList").append(li);
         });
         renderCounterList();
-        filterTodos();
 
-        if (todosRender === todos){
-            focusAllCounter();
-        } else if (!todosRender[0].done) {
-            focusActiveCounter();
-        } else {
-            focusCompletedCounter();
+        if (type === 'active') {
+            return focusActiveCounter();
+        } else if (type === 'completed') {
+            return focusCompletedCounter();
         }
+        focusAllCounter();
+        filterTodos();
 
     }
 
     function renderActiveTodos() {
-
         const activeTodos = todos.filter(task => !task.done);
-        renderTodos(activeTodos);
-        
+        renderTodos(activeTodos, 'active');
     }
 
     function renderCompleteTodos() {
-
         const completedTodos = todos.filter(task => task.done);
-        renderTodos(completedTodos);
+        renderTodos(completedTodos, 'completed');
 
     }
 
