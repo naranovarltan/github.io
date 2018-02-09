@@ -23,7 +23,25 @@ $(document).ready(function() {
         }
     });
 
-    const todos        = [];
+    const todos        = [{
+        done: false,
+        title: "Прекращать редактирования задачи при клике вне инпута"
+    }, {
+        done: false,
+        title: "Фильтр на ввод srcript`a в input"
+    }, {
+        done: true,
+        title: "Выделение выводимого списка"
+    }, {
+        done: false,
+        title: "Почитать underscore"
+    }, {
+        done: true,
+        title: "Добавить кнопку 'Удалить выполненные'"
+    }, {
+        done: false,
+        title: "Pagination"
+    }];
     const countersList = [{
         id: "allCounter",
         name: "All Tasks:",
@@ -38,9 +56,11 @@ $(document).ready(function() {
         type: "success"
     }];
 
+    renderTodos();
+
     function filterTodos() {
         const completedTodos = [],
-                 activeTodos = [];
+            activeTodos = [];
 
         todos.forEach(i => {
             if(i.done){
@@ -52,7 +72,7 @@ $(document).ready(function() {
 
         const checkedCounter = completedTodos.length,
             uncheckedCounter = activeTodos.length,
-                  allCounter = todos.length;
+            allCounter = todos.length;
 
         $("#allCounter").find(".allCounter").empty();
         $("#allCounter").find(".allCounter").append(allCounter);
@@ -66,30 +86,25 @@ $(document).ready(function() {
     }
 
     function preAddTask() {
+
         const title = $("#newTask").val().trim();
         if (!title) {
             return;
         }
-        addTask(title);
-        $("#newTask").val("");
-        renderTodos();
-    }
 
-    function addTask(title) {
         const task = {
             done: false,
             title
         };
         todos.push(task);
+
+        $("#newTask").val("");
+        renderTodos();
     }
 
     function preDeleteTask(event) {
         const task = $(event.target);
         const index = parseInt(task.parent().attr("data-index"), 10);
-        deleteTask(index);
-    }
-
-    function deleteTask(index) {
         todos.splice(index, 1);
         renderTodos();
     }
@@ -107,9 +122,8 @@ $(document).ready(function() {
     }
 
     function editTask() {
-        const eTarget = $(event.target);
-        if (eTarget.hasClass("textTask")) {
-            const task = $(event.target);
+        const task = $(event.target);
+        if (task.hasClass("textTask")) {
             const index = parseInt(task.parent().attr("data-index"), 10);
             const textTask = task.text();
             task.hide();
@@ -124,7 +138,7 @@ $(document).ready(function() {
     function saveTask(event) {
         const eTarget = $(event.target);
         if (eTarget.hasClass("saveTask")) {
-            const parentTask = $(event.target).parent();
+            const parentTask = eTarget.parent();
             const index = parseInt(parentTask.attr("data-index"), 10);
             const newTextTask = parentTask.find(".editTask").val();
             todos[index].title = newTextTask;
@@ -135,22 +149,33 @@ $(document).ready(function() {
     function saveKeyTask(event) {
         const eTarget = $(event.target);
         if (eTarget.hasClass("editTask")) {
-            const parentTask = $(event.target).parent();
             const index = parseInt(parentTask.attr("data-index"), 10);
+            const parentTask = $(event.target).parent();
             const newTextTask = parentTask.find(".editTask").val();
             todos[index].title = newTextTask;
             renderTodos();
         }
     }
 
+    function focusAllCounter() {
+        $("#counterList #allCounter").addClass("focusCounter");
+    }
+    function focusActiveCounter() {
+        $("#counterList #uncheckedCounter").addClass("focusCounter");
+    }
+    function focusCompletedCounter() {
+        $("#counterList #checkedCounter").addClass("focusCounter");
+    }
+
     function renderAllTodos() {
         renderTodos(todos);
     }
 
-    function renderTodos(todos1) {
-        todos1 = todos1 || todos;
+    function renderTodos(todosRender) {
+        todosRender = todosRender || todos;
+
         $("#taskList > li").remove();
-        todos1.forEach((task, index) => {
+        todosRender.forEach((task, index) => {
             const li = $(`
                 <li data-index=${index}>
                     <span class="${task.done ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'} doneTask"></span>
@@ -163,12 +188,23 @@ $(document).ready(function() {
             $("#taskList").append(li);
         });
         renderCounterList();
+        filterTodos();
+
+        if (todosRender === todos){
+            focusAllCounter();
+        } else if (!todosRender[0].done) {
+            focusActiveCounter();
+        } else {
+            focusCompletedCounter();
+        }
+
     }
 
     function renderActiveTodos() {
 
         const activeTodos = todos.filter(task => !task.done);
         renderTodos(activeTodos);
+        
     }
 
     function renderCompleteTodos() {
@@ -190,24 +226,22 @@ $(document).ready(function() {
             `);
             $("#counterList").append(button);
         });
-        filterTodos();
     }
 
     function deleteCompleteTodos(event) {
         event.stopPropagation();
-        const indexs = [];
+        const completedTodos = [];
 
         todos.forEach((task, i) => {
             if(task.done){
-                indexs.push(i);
+                completedTodos.push(i);
             }
-        })
+        });
 
-        indexs.reverse().forEach(index => {
+        completedTodos.reverse().forEach(index => {
             todos.splice(index, 1)
-        })
+        });
         renderTodos();
     }
 
 });
-
