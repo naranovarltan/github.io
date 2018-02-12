@@ -179,6 +179,7 @@ $(document).ready(function() {
 
     function renderTodos(todosRender, type) {
         todosRender = todosRender || todos;
+        
         //todosRender = todos.slice(0, 5);
 
         $("#taskList > li").remove();
@@ -196,7 +197,6 @@ $(document).ready(function() {
         });
         renderCounterList();
         filterTodos();
-        renderPagination();
 
         if (type === 'active') {
             return focusActiveCounter();
@@ -215,7 +215,7 @@ $(document).ready(function() {
         // 3 -> 9-13 slice(10, 15)
     
         $("#pagination > li").remove();
-        const pages = Math.ceil(todos.length / 5)
+        const pages = Math.ceil(todosRender.length / 5)
         for(let i = 1; i <= pages; i++) {
             const li = $(`
                 <li data-index=${i}>
@@ -231,21 +231,26 @@ $(document).ready(function() {
     function renderTodosPagination(event) {
         const page = $(event.target);
         const index = parseInt(page.parent().attr("data-index"), 10);
+        console.log(index);
+
+        //rendorTodos(todosRendor, type, index)
     }
     
     function renderAllTodos() {
         renderTodos(todos);
+        renderPagination(todos);
     }
 
     function renderActiveTodos() {
         const activeTodos = todos.filter(task => !task.done);
         renderTodos(activeTodos, 'active');
+        renderPagination(activeTodos);
     }
 
     function renderCompleteTodos() {
         const completedTodos = todos.filter(task => task.done);
         renderTodos(completedTodos, 'completed');
-
+        renderPagination(completedTodos);
     }
 
     function renderCounterList() {

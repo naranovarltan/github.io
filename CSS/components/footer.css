@@ -1,0 +1,24 @@
+.footer {
+    width: 100%;
+    height:auto;
+    margin: 0 auto;
+    text-align: center;
+    background-color: black;
+    padding-top: 25px;
+    bottom: 0;
+}
+
+.footer__link {
+    color: #ffffff;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.footer__link:hover {
+    border-bottom: 1px solid #FFFFFF;
+
+}
+
+.author {
+    color: #FFFFFF;
+}

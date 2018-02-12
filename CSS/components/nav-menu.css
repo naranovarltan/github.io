@@ -1,0 +1,35 @@
+nav {
+    margin: auto;
+    text-align: center;
+}
+
+.topnav {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    font-size: 14px;
+    margin: 20px 0 20px 0;
+}
+
+.topnav a {
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: 1s all;
+}
+
+.topnav a:hover {
+    font-weight: bold;
+    transition: 0.5s all;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+.icon {
+    background-color: lightgrey;
+    margin-top: -2px;
+}

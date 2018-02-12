@@ -1,0 +1,31 @@
+
+.preloader {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 2;
+    transition: 1s all;
+    opacity: 1;
+    visibility: visible;
+    background: url("../../img/1352477369225.gif") center;
+}
+
+.done {
+    opacity:0;
+    overflow: hidden;
+}
+
+.loader {
+    position: absolute;
+    height: 75px;
+    width: 75px;
+    border: 10px solid white;
+    border-top-color: #000000;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: 1s spin infinite linear;
+}

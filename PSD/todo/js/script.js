@@ -41,6 +41,4 @@ $(document).ready(function(){
         $(this).parent().find(".textTask").text(newValue);
         $(this).parent().find(".textTask").show();
     }
-
-
 });

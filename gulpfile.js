@@ -1,19 +1,25 @@
 const    gulp = require('gulp'),
  autoprefixer = require('gulp-autoprefixer'),
    livereload = require('gulp-livereload');
+   concatCSS = require('gulp-concat-css'),
+   minifyCSS = require('gulp-clean-css');
  
 
-gulp.task('livereload', function(){
+gulp.task('default', () => {
     gulp.src('CSS/style.css')
-        .pipe(autoprefixer({
-            browsers: ['last 5 versions'],
-            cascade: false
-        }))
-        .pipe(gulp.dest('dist'))
-        .pipe(livereload());
+        .pipe(concatCSS('bundles.css'))
+        .pipe(minifyCSS())
+        .pipe(rename('bundle.min.css'))
+        .pipe(gulp.dest('out'))
+        
 });
 
-gulp.task('default', () => {
-    livereload.listen();
-    gulp.watch('CSS/style.css', ['livereload']);
-});
+gulp.task('watch', () => {
+    gulp.watch('CSS/*.css', ['default'])
+})
+
+/*.pipe(livereload());
+.pipe(autoprefixer({
+    browsers: ['last 5 versions'],
+    cascade: false
+}))*/

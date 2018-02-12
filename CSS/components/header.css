@@ -1,0 +1,14 @@
+.logo {
+    background: #000;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.graficlogo {
+    padding: 5px;
+    max-width: 100%;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-size: 56px;
+}
