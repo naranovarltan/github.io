@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-    events();
-
     const todos        = [{
         done: false,
         title: "Прекращать редактирования задачи при клике вне инпута"
@@ -36,6 +34,8 @@ $(document).ready(function() {
         type: "success"
     }];
 
+    events();
+
     renderTodos();
 
     function events () {
@@ -45,10 +45,12 @@ $(document).ready(function() {
         $("#counterList").on("click", "#uncheckedCounter", renderActiveTodos);
         $("#counterList").on("click", "#checkedCounter", renderCompleteTodos);
         $("#counterList").on("click", ".deleteCheckedTodos", deleteCompleteTodos);
+        $("#pagination").on("click", ".pagin", renderTodosPagination);
         $("#taskList")
             .on("click", ".deleteTask", preDeleteTask)
-            .on("click", ".doneTask", preSetPDoneTask)
+            .on("click", ".doneTask", preSetDoneTask)
             .on("dblclick", editTask)
+            .on("clickout", ".editTask", saveTask)
             .on("click", ".saveTask", saveTask)
             .on("keypress", ".editTask", function (event) {
                 if (event.keyCode === 13) {
@@ -115,7 +117,7 @@ $(document).ready(function() {
         renderTodos();
     }
 
-    function preSetPDoneTask(event) {
+    function preSetDoneTask(event) {
         const task = $(event.target);
         const index = parseInt(task.parent().attr("data-index"), 10);
         setDoneTask(index);
@@ -166,7 +168,7 @@ $(document).ready(function() {
     function focusAllCounter() {
         $("#counterList #allCounter").addClass("focusCounter");
     }
-    
+
     function focusActiveCounter() {
         $("#counterList #uncheckedCounter").addClass("focusCounter");
     }
@@ -175,12 +177,9 @@ $(document).ready(function() {
         $("#counterList #checkedCounter").addClass("focusCounter");
     }
 
-    function renderAllTodos() {
-        renderTodos(todos);
-    }
-
     function renderTodos(todosRender, type) {
         todosRender = todosRender || todos;
+        //todosRender = todos.slice(0, 5);
 
         $("#taskList > li").remove();
         todosRender.forEach((task, index) => {
@@ -196,15 +195,46 @@ $(document).ready(function() {
             $("#taskList").append(li);
         });
         renderCounterList();
+        filterTodos();
+        renderPagination();
 
         if (type === 'active') {
             return focusActiveCounter();
         } else if (type === 'completed') {
             return focusCompletedCounter();
         }
+        
         focusAllCounter();
-        filterTodos();
 
+    }
+    
+    function renderPagination(todosRender) {
+
+        // 1 -> 0-4 slice(0, 5)
+        // 2 -> 5-9 slice(5, 10)
+        // 3 -> 9-13 slice(10, 15)
+    
+        $("#pagination > li").remove();
+        const pages = Math.ceil(todos.length / 5)
+        for(let i = 1; i <= pages; i++) {
+            const li = $(`
+                <li data-index=${i}>
+                    <a href="#" aria-label="" class="pagin">
+                        ${i}
+                    </a>
+                </li>
+            `);
+            $("#pagination").append(li);
+        }
+    }
+    
+    function renderTodosPagination(event) {
+        const page = $(event.target);
+        const index = parseInt(page.parent().attr("data-index"), 10);
+    }
+    
+    function renderAllTodos() {
+        renderTodos(todos);
     }
 
     function renderActiveTodos() {
